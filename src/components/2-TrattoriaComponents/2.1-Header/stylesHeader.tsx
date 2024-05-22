@@ -26,6 +26,8 @@ export const ImagemHeroTratoria = styled.div`
   height: 280px;
   margin-top: 186px;
   position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   &::before {
     position: absolute;
