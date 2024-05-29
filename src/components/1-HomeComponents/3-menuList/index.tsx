@@ -1,10 +1,12 @@
-import PratoMenu from '../../../models/1-CardHome'
-import { Container } from '../../../styleGlobal'
+import { RestauranteAPI } from '../../../Pages/Home'
+
 import MenuItem from '../2-menuItem'
+
+import { Container } from '../../../styleGlobal'
 import { List } from './styleMenuList'
 
 export type Props = {
-  prato: PratoMenu[]
+  prato: RestauranteAPI[]
 }
 
 const MenuList = ({ prato }: Props) => (
@@ -13,12 +15,12 @@ const MenuList = ({ prato }: Props) => (
       {prato.map((pratoapedir) => (
         <MenuItem
           key={pratoapedir.id}
-          image={pratoapedir.image}
-          categories={pratoapedir.categories}
-          description={pratoapedir.description}
-          grade={pratoapedir.grade}
-          title={pratoapedir.title}
-          to={pratoapedir.to}
+          image={pratoapedir.capa}
+          tipo={pratoapedir.tipo}
+          description={pratoapedir.descricao}
+          grade={pratoapedir.avaliacao}
+          title={pratoapedir.titulo}
+          id={pratoapedir.id}
         />
       ))}
     </List>

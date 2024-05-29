@@ -4,18 +4,18 @@ type Props = {
   image: string
   title: string
   description: string
-  to: string
+  id: number
 }
 
-export const CardapioTrattoria = ({ image, title, description, to }: Props) => (
-  <CardTrattoria>
-    <img src={image} alt={title} />
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <a href={to}>
+export const CardapioTrattoria = ({ image, title, description }: Props) => {
+  return (
+    <CardTrattoria>
+      <img src={image} alt={title} />
+      <h1>{title}</h1>
+      <p>{description}</p>
       <AddButton>Adicionar ao Carrinho</AddButton>
-    </a>
-  </CardTrattoria>
-)
+    </CardTrattoria>
+  )
+}
 
 export default CardapioTrattoria

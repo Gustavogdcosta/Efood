@@ -2,7 +2,7 @@ class CardModelTrattoria {
   image: string
   title: string
   description: string
-  to: string
+  to?: string
   id: number
 
   constructor(
@@ -10,7 +10,7 @@ class CardModelTrattoria {
     image: string,
     title: string,
     description: string,
-    to: string
+    to?: string
   ) {
     this.id = id
     this.image = image

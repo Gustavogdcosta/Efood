@@ -5,9 +5,12 @@ export const CardTrattoria = styled.div`
   height: 338px;
   background-color: ${cores.rosa};
   color: ${cores.branca};
+  border-radius: 10px;
+  cursor: pointer;
 
   img {
     margin: 8px;
+    border-radius: 10px;
   }
 
   h1 {
@@ -32,4 +35,5 @@ export const AddButton = styled.button`
   font-weight: bold;
   height: 24px;
   cursor: pointer;
+  border-radius: 10px;
 `

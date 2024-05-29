@@ -11,38 +11,45 @@ import {
 
 type Props = {
   image: string
-  categories: string[]
+  tipo: string
   title: string
   grade: string
   description: string
-  to: string
+  id: number
 }
 
 export const MenuItem = ({
   image,
-  categories,
+  tipo,
   description,
   grade,
   title,
-  to
-}: Props) => (
-  <Card>
-    <CardImg src={image} alt={title} />
-    <DivBotoesCard>
-      {categories.map((info) => (
-        <BotesCard key={info}>{info}</BotesCard>
-      ))}
-    </DivBotoesCard>
-    <TituloCard>
-      <Titulo2>{title}</Titulo2>
-      <div>
-        <Titulo2>{grade}</Titulo2>
-        <img src={starIcon} alt="Estrela Dourada" />
-      </div>
-    </TituloCard>
-    <Paragrafo>{description}</Paragrafo>
-    <SaibaMais to={to}>Saiba Mais</SaibaMais>
-  </Card>
-)
+  id
+}: Props) => {
+  const reduzTexto = (description: string) => {
+    if (description.length > 270) {
+      return description.slice(0, 245) + '...'
+    }
+    return description
+  }
+
+  return (
+    <Card>
+      <CardImg src={image} alt={title} />
+      <DivBotoesCard>
+        <BotesCard>{tipo}</BotesCard>
+      </DivBotoesCard>
+      <TituloCard>
+        <Titulo2>{title}</Titulo2>
+        <div>
+          <Titulo2>{grade}</Titulo2>
+          <img src={starIcon} alt="Estrela Dourada" />
+        </div>
+      </TituloCard>
+      <Paragrafo>{reduzTexto(description)}</Paragrafo>
+      <SaibaMais to={`/trattoria/${id}`}>Saiba Mais</SaibaMais>
+    </Card>
+  )
+}
 
 export default MenuItem
