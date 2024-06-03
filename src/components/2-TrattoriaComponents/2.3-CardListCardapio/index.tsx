@@ -26,6 +26,12 @@ const MenuTrattoria = ({ cardTrattoria }: Props) => {
     isVisible: false
   })
 
+  if (!Array.isArray(cardTrattoria)) {
+    return <div>Invalid data format</div>
+  }
+
+  console.log(cardTrattoria)
+
   return (
     <Container>
       <TrattoriaList
@@ -33,9 +39,9 @@ const MenuTrattoria = ({ cardTrattoria }: Props) => {
           setModal({ isVisible: true })
         }}
       >
-        {cardTrattoria.map((itemdomenu) => (
+        {cardTrattoria.map((itemdomenu, Index) => (
           <CardapioTrattoria
-            key={itemdomenu.id}
+            key={Index}
             id={itemdomenu.id}
             image={itemdomenu.cardapio.foto}
             title={itemdomenu.cardapio.nome}
