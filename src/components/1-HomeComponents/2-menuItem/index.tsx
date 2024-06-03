@@ -47,7 +47,7 @@ export const MenuItem = ({
         </div>
       </TituloCard>
       <Paragrafo>{reduzTexto(description)}</Paragrafo>
-      <SaibaMais to={`/trattoria/${id}`}>Saiba Mais</SaibaMais>
+      <SaibaMais to={`/${id}`}>Saiba Mais</SaibaMais>
     </Card>
   )
 }

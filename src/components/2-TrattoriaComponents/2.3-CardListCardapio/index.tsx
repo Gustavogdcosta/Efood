@@ -36,7 +36,7 @@ const MenuTrattoria = ({ cardTrattoria }: Props) => {
         {cardTrattoria.map((itemdomenu) => (
           <CardapioTrattoria
             key={itemdomenu.id}
-            id={itemdomenu.cardapio.id}
+            id={itemdomenu.id}
             image={itemdomenu.cardapio.foto}
             title={itemdomenu.cardapio.nome}
             description={itemdomenu.cardapio.descricao}

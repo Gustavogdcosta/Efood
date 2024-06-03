@@ -66,17 +66,16 @@ const Trattoria = () => {
   const [trattoriaMenu, setTrattoriaMenu] = useState<RestauranteAPI[]>([])
 
   useEffect(() => {
-    fetch(
-      `https://fake-api-tau.vercel.app/api/efood/restaurantes/trattoria/${id}`
-    )
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
       .then((res) => res.json())
       .then((res) => setTratoriaHead(res))
-    fetch(
-      `https://fake-api-tau.vercel.app/api/efood/restaurantes/trattoria/${id}`
-    )
+
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
       .then((res) => res.json())
       .then((res) => setTrattoriaMenu(res))
   }, [id])
+
+  console.log(tratoriaHead)
 
   if (!tratoriaHead) {
     return <h3>Carregando...</h3>
