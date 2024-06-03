@@ -75,8 +75,6 @@ const Trattoria = () => {
       .then((res) => setTrattoriaMenu(res))
   }, [id])
 
-  console.log(tratoriaHead)
-
   if (!tratoriaHead) {
     return <h3>Carregando...</h3>
   }
