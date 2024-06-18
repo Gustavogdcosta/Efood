@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Titulo2, cores } from '../../../styleGlobal'
+import { Link } from 'react-router-dom'
 
 export const BackgroundHeader = styled.div`
   width: 100%;
@@ -63,4 +64,6 @@ export const DivAfter = styled.div`
   }
 `
 
-export const Italiana = styled.h2``
+export const HomePage = styled(Link)`
+  text-decoration: none;
+`

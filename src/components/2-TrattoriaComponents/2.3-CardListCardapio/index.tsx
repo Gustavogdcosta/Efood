@@ -8,88 +8,91 @@ import {
   ModalContent,
   ModelContainer
 } from './stylesCardList'
-import { RestauranteAPI } from '../../../Pages/Home'
+import { Cardapio } from '../../../Pages/Home'
 
 import closeIcon from '../../../assets/images/fechar.png'
-import PizzaImg from '../../../assets/images/PizzaMarguerita.png'
-
-type Props = {
-  cardTrattoria: RestauranteAPI[]
-}
 
 export interface ModalState {
   isVisible: boolean
+  selectedItem: Cardapio | null
 }
 
-const MenuTrattoria = ({ cardTrattoria }: Props) => {
+export type Props = {
+  opcoesRestaurate: Cardapio[]
+}
+
+const MenuTrattoria = ({ opcoesRestaurate }: Props) => {
   const [modal, setModal] = useState<ModalState>({
-    isVisible: false
+    isVisible: false,
+    selectedItem: null
   })
 
-  if (!Array.isArray(cardTrattoria)) {
-    return <div>NAO É UM ARRAY</div>
+  const itemClicado = (item: Cardapio) => {
+    setModal({
+      isVisible: true,
+      selectedItem: item
+    })
   }
 
-  console.log(typeof cardTrattoria)
-  console.log(cardTrattoria)
-
+  const formataPreco = (preco = 0) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(preco)
+  }
   return (
     <Container>
-      <TrattoriaList
-        onClick={() => {
-          setModal({ isVisible: true })
-        }}
-      >
-        {cardTrattoria.map((itemdomenu) => (
+      <TrattoriaList>
+        {opcoesRestaurate.map((itemdomenu) => (
           <CardapioTrattoria
             key={itemdomenu.id}
+            image={itemdomenu.foto}
+            title={itemdomenu.nome}
+            description={itemdomenu.descricao}
             id={itemdomenu.id}
-            image={itemdomenu.cardapio.foto}
-            title={itemdomenu.cardapio.nome}
-            description={itemdomenu.cardapio.descricao}
+            onClick={() => itemClicado(itemdomenu)}
           />
         ))}
       </TrattoriaList>
 
-      <ModalCard className={modal.isVisible ? 'visivel' : ''}>
-        <ModelContainer>
-          <img
-            src={closeIcon}
-            alt="fechar"
+      {modal.isVisible && modal.selectedItem && (
+        <ModalCard className={modal.isVisible ? 'visivel' : ''}>
+          <ModelContainer>
+            <img
+              src={closeIcon}
+              alt="fechar"
+              onClick={() => {
+                setModal({ isVisible: false, selectedItem: null })
+              }}
+            ></img>
+            <ModalContent>
+              <img
+                src={modal.selectedItem.foto}
+                alt={modal.selectedItem.nome}
+              ></img>
+              <div>
+                <h2>{modal.selectedItem.nome}</h2>
+                <p>
+                  {modal.selectedItem.descricao}
+                  <br />
+                  <br />
+                </p>
+                <p>{modal.selectedItem.porcao}</p>
+                <AddButtonModal>
+                  Adicionar ao carrinho -
+                  {formataPreco(modal.selectedItem.preco)}
+                </AddButtonModal>
+              </div>
+            </ModalContent>
+          </ModelContainer>
+          <div
+            className="overlay"
             onClick={() => {
-              setModal({ isVisible: false })
+              setModal({ isVisible: false, selectedItem: null })
             }}
-          ></img>
-          <ModalContent>
-            <img src={PizzaImg} alt="Pizza de Marguerita"></img>
-            <div>
-              <h2>Pizza Marguerita</h2>
-              <p>
-                A pizza Margherita é uma pizza clássica da culinária italiana,
-                reconhecida por sua simplicidade e sabor inigualável. Ela é
-                feita com uma base de massa fina e crocante, coberta com molho
-                de tomate fresco, queijo mussarela de alta qualidade, manjericão
-                fresco e azeite de oliva extra-virgem. A combinação de sabores é
-                perfeita, com o molho de tomate suculento e ligeiramente ácido,
-                o queijo derretido e cremoso e as folhas de manjericão frescas,
-                que adicionam um toque de sabor herbáceo. É uma pizza simples,
-                mas deliciosa, que agrada a todos os paladares e é uma ótima
-                opção para qualquer ocasião.
-                <br />
-                <br />
-                Serve: de 2 a 3 pessoas.
-              </p>
-              <AddButtonModal>Adicionar ao carrinho - R$ 60,90</AddButtonModal>
-            </div>
-          </ModalContent>
-        </ModelContainer>
-        <div
-          className="overlay"
-          onClick={() => {
-            setModal({ isVisible: false })
-          }}
-        ></div>
-      </ModalCard>
+          ></div>
+        </ModalCard>
+      )}
     </Container>
   )
 }

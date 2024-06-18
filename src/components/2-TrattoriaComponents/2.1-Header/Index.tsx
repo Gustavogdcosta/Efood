@@ -9,7 +9,8 @@ import {
   TituloCabecalho,
   ImagemHeroTratoria,
   UlHeader,
-  DivAfter
+  DivAfter,
+  HomePage
 } from './stylesHeader'
 import { Link } from 'react-router-dom'
 
@@ -23,8 +24,10 @@ const HeaderTrattoria = ({ heroTratoria }: Props) => {
       <BackgroundHeader style={{ backgroundImage: `url(${imagemdeFundo})` }}>
         <Container>
           <UlHeader>
-            <Link to="/">
+            <HomePage to="/">
               <TituloCabecalho>Restaurantes</TituloCabecalho>
+            </HomePage>
+            <Link to="/">
               <img src={efoodLogo} />
             </Link>
             <TituloCabecalho> 0 Produto(s) no carrinho </TituloCabecalho>

@@ -11,6 +11,9 @@ export const CardTrattoria = styled.div`
   img {
     margin: 8px;
     border-radius: 10px;
+    width: 304px;
+    height: 167px;
+    object-fit: cover;
   }
 
   h1 {

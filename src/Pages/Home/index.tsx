@@ -4,7 +4,16 @@ import HeroCabecalho from '../../components/1-HomeComponents/1-Hero'
 import MenuList from '../../components/1-HomeComponents/3-menuList'
 import Footer from '../../components/Footer'
 
-export type RestauranteAPI = {
+export interface Cardapio {
+  foto: string
+  preco: number
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
+}
+
+export interface RestauranteAPI {
   id: number
   titulo: string
   destacado?: boolean
@@ -12,14 +21,7 @@ export type RestauranteAPI = {
   tipo: string
   descricao: string
   capa: string
-  cardapio: {
-    foto: string
-    preco: number
-    id: number
-    nome: string
-    descricao: string
-    porcao: string
-  }
+  cardapio: Cardapio[]
 }
 
 const Home = () => {
