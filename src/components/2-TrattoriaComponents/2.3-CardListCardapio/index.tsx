@@ -11,7 +11,7 @@ import {
   ModelContainer
 } from './stylesCardList'
 import { Cardapio } from '../../../Pages/Home'
-import { add } from '../../../store/reducer/cart'
+import { add, open } from '../../../store/reducer/cart'
 
 import closeIcon from '../../../assets/images/fechar.png'
 
@@ -39,6 +39,7 @@ const MenuTrattoria = ({ opcoesRestaurate }: Props) => {
   const addToCart = () => {
     if (modal.selectedItem) {
       dispatch(add(modal.selectedItem))
+      dispatch(open())
       setIsAnimating(true)
       setTimeout(() => setIsAnimating(false), 500)
     }
