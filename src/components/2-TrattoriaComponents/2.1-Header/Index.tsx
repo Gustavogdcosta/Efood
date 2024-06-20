@@ -1,6 +1,10 @@
-import { Container } from '../../../styleGlobal'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
+import { Container } from '../../../styleGlobal'
 import { RestauranteAPI } from '../../../Pages/Home'
+import { open } from '../../../store/reducer/cart'
+import { RootReducer } from '../../../store'
 
 import imagemdeFundo from '../../../assets/images/fundo_cabecalho.png'
 import efoodLogo from '../../../assets/images/logo.png'
@@ -12,13 +16,19 @@ import {
   DivAfter,
   HomePage
 } from './stylesHeader'
-import { Link } from 'react-router-dom'
 
 export type Props = {
   heroTratoria: RestauranteAPI
 }
 
 const HeaderTrattoria = ({ heroTratoria }: Props) => {
+  const dispatch = useDispatch()
+  const { items } = useSelector((state: RootReducer) => state.cart)
+
+  const openCart = () => {
+    dispatch(open())
+  }
+
   return (
     <div>
       <BackgroundHeader style={{ backgroundImage: `url(${imagemdeFundo})` }}>
@@ -30,7 +40,9 @@ const HeaderTrattoria = ({ heroTratoria }: Props) => {
             <Link to="/">
               <img src={efoodLogo} />
             </Link>
-            <TituloCabecalho> 0 Produto(s) no carrinho </TituloCabecalho>
+            <TituloCabecalho onClick={openCart}>
+              {items.length} Produto(s) no carrinho
+            </TituloCabecalho>
           </UlHeader>
         </Container>
       </BackgroundHeader>

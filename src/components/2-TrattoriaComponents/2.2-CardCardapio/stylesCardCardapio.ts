@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../../styleGlobal'
+import { breakpoints, cores } from '../../../styleGlobal'
 
 export const CardTrattoria = styled.div`
   height: 338px;
@@ -7,6 +7,7 @@ export const CardTrattoria = styled.div`
   color: ${cores.branca};
   border-radius: 10px;
   cursor: pointer;
+  position: relative;
 
   img {
     margin: 8px;
@@ -14,6 +15,13 @@ export const CardTrattoria = styled.div`
     width: 304px;
     height: 167px;
     object-fit: cover;
+
+    @media (max-width: ${breakpoints.desktop}) {
+      width: 94%;
+    }
+    @media (max-width: ${breakpoints.mobile}) {
+      width: 96%;
+    }
   }
 
   h1 {
@@ -25,6 +33,10 @@ export const CardTrattoria = styled.div`
   p {
     margin: 8px;
     text-align: justify;
+
+    @media (max-width: ${breakpoints.desktop}) {
+      font-size: 85%;
+    }
   }
 `
 
@@ -39,4 +51,10 @@ export const AddButton = styled.button`
   height: 24px;
   cursor: pointer;
   border-radius: 10px;
+  position: absolute;
+  bottom: 4px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 94%;
+  }
 `

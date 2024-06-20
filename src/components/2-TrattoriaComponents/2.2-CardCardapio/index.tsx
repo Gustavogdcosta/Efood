@@ -15,8 +15,8 @@ export const CardapioTrattoria = ({
   onClick
 }: Props) => {
   const reduzTexto = (description: string) => {
-    if (description.length > 120) {
-      return description.slice(0, 140) + '...'
+    if (description.length > 130) {
+      return description.slice(0, 130) + '...'
     }
     return description
   }
@@ -25,7 +25,7 @@ export const CardapioTrattoria = ({
       <img src={image} alt={title} />
       <h1>{title}</h1>
       <p>{reduzTexto(description)}</p>
-      <AddButton>Adicionar ao Carrinho</AddButton>
+      <AddButton>Mais Detalhes</AddButton>
     </CardTrattoria>
   )
 }

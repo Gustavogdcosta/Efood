@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Titulo2, cores } from '../../../styleGlobal'
+import { Titulo2, breakpoints, cores } from '../../../styleGlobal'
 import { Link } from 'react-router-dom'
 
 export const BackgroundHeader = styled.div`
@@ -12,6 +12,12 @@ export const BackgroundHeader = styled.div`
   margin: 0 auto;
   position: absolute;
   top: 0;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    img {
+      width: 70%;
+    }
+  }
 `
 export const UlHeader = styled.ul`
   margin-top: 60px;
@@ -20,7 +26,16 @@ export const UlHeader = styled.ul`
   justify-content: space-between;
 `
 export const TituloCabecalho = styled(Titulo2)`
-  margin: 0;
+  margin: 2px;
+  width: 150px;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 0.8em;
+    width: 80px;
+  }
 `
 export const ImagemHeroTratoria = styled.div`
   width: 100%;

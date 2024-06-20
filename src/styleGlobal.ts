@@ -14,13 +14,29 @@ export const GlobalCSS = createGlobalStyle`
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
     list-style: none;
+    touch-action: none;
   }
 `
+
+export const breakpoints = {
+  desktop: '1024px',
+  tablet: '768px',
+  mobile: '425px'
+}
 
 export const Container = styled.div`
   max-width: 1024px;
   width: 100%;
   margin: 0 auto;
+
+  @media (max-width: ${breakpoints.desktop}){
+      width: 80%;
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 100%;
+    }
+  }
 `
 
 export const Titulo2 = styled.h2`

@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { cores } from '../../../styleGlobal'
+import { styled, keyframes } from 'styled-components'
+import { breakpoints, cores } from '../../../styleGlobal'
 import { AddButton } from '../2.2-CardCardapio/stylesCardCardapio'
 
 export const TrattoriaList = styled.ul`
@@ -7,6 +7,17 @@ export const TrattoriaList = styled.ul`
   grid-template-columns: 1fr 1fr 1fr;
   gap: 32px;
   margin-top: 56px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+  }
 `
 export const ModalCard = styled.div`
   display: none;
@@ -38,6 +49,10 @@ export const ModelContainer = styled.div`
   position: relative;
   z-index: 1;
 
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+  }
+
   > img {
     position: absolute;
     top: 8px;
@@ -53,26 +68,68 @@ export const ModalContent = styled.div`
   display: flex;
   color: ${cores.branca};
 
-    img {
-      height: 280px;
-      width: 280px;
-      object-fit: cover;
-      margin: 32px 24px 32px 32px;
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: block;
+    height: 550px;
+  }
+
+  img {
+    height: 280px;
+    width: 280px;
+    object-fit: cover;
+    margin: 32px 24px 32px 32px;
+
+    @media (max-width: ${breakpoints.mobile}) {
+      width: 60%;
+      height: 40%;
+      margin: 12px 20%;
     }
+  }
 
-    div {
-      margin-top: 32px;
-      margin-right: 32px;
+  div {
+    margin: 32px 24px 24px 0;
 
-      p {
-        margin: 16px 0;
-        text-align: justify;
+    @media (max-width: ${breakpoints.mobile}) {
+      margin: 0 10%;
+    }
+    p {
+      margin: 8px 0;
+      text-align: justify;
+
+      @media (max-width: ${breakpoints.tablet}) {
+        width: 100%;
+        margin-right: px;
       }
     }
+  }
+`
+
+const pulse = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 `
 
 export const AddButtonModal = styled(AddButton)`
   width: 218px;
   border-radius: 0;
+  bottom: 24px;
+
+  &.pulse-animation {
+    animation: ${pulse} 0.2s;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    bottom: 12px;
+  }
 `

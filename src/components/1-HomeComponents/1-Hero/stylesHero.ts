@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../../styleGlobal'
+import { breakpoints, cores } from '../../../styleGlobal'
 
 export const ImagemHero = styled.div`
   width: 100%;
@@ -30,4 +30,10 @@ export const Titulo1 = styled.h1`
   width: 539px;
   text-align: center;
   margin: 138px auto 40px;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 400px;
+    font-size: 1.5em;
+    margin: 120px auto 40px;
+  }
 `

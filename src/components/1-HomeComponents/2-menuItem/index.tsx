@@ -27,8 +27,8 @@ export const MenuItem = ({
   id
 }: Props) => {
   const reduzTexto = (description: string) => {
-    if (description.length > 270) {
-      return description.slice(0, 245) + '...'
+    if (description.length > 230) {
+      return description.slice(0, 227) + '...'
     }
     return description
   }

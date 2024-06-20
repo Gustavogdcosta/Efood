@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
 import { Container } from '../../../styleGlobal'
 import CardapioTrattoria from '../2.2-CardCardapio'
 import {
@@ -9,6 +11,7 @@ import {
   ModelContainer
 } from './stylesCardList'
 import { Cardapio } from '../../../Pages/Home'
+import { add } from '../../../store/reducer/cart'
 
 import closeIcon from '../../../assets/images/fechar.png'
 
@@ -21,7 +24,26 @@ export type Props = {
   opcoesRestaurate: Cardapio[]
 }
 
+export const formataPreco = (preco = 0) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+
 const MenuTrattoria = ({ opcoesRestaurate }: Props) => {
+  const dispatch = useDispatch()
+
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  const addToCart = () => {
+    if (modal.selectedItem) {
+      dispatch(add(modal.selectedItem))
+      setIsAnimating(true)
+      setTimeout(() => setIsAnimating(false), 500)
+    }
+  }
+
   const [modal, setModal] = useState<ModalState>({
     isVisible: false,
     selectedItem: null
@@ -34,12 +56,6 @@ const MenuTrattoria = ({ opcoesRestaurate }: Props) => {
     })
   }
 
-  const formataPreco = (preco = 0) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(preco)
-  }
   return (
     <Container>
       <TrattoriaList>
@@ -78,8 +94,11 @@ const MenuTrattoria = ({ opcoesRestaurate }: Props) => {
                   <br />
                 </p>
                 <p>{modal.selectedItem.porcao}</p>
-                <AddButtonModal>
-                  Adicionar ao carrinho -
+                <AddButtonModal
+                  onClick={addToCart}
+                  className={isAnimating ? 'pulse-animation' : ''}
+                >
+                  Adicionar ao carrinho{'  '}
                   {formataPreco(modal.selectedItem.preco)}
                 </AddButtonModal>
               </div>

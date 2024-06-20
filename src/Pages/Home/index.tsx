@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react'
 import HeroCabecalho from '../../components/1-HomeComponents/1-Hero'
 import MenuList from '../../components/1-HomeComponents/3-menuList'
 import Footer from '../../components/Footer'
+import { Container } from '../../styleGlobal'
+
+import { useGetHomeQuery } from '../../services/api'
 
 export interface Cardapio {
   foto: string
@@ -25,13 +28,19 @@ export interface RestauranteAPI {
 }
 
 const Home = () => {
-  const [restaurantes, setRestaurantes] = useState<RestauranteAPI[]>([])
+  const { data: restaurantes } = useGetHomeQuery()
 
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res) => setRestaurantes(res))
-  }, [])
+  // const [restaurantes, setRestaurantes] = useState<RestauranteAPI[]>([])
+
+  // useEffect(() => {
+  //   fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
+  //     .then((res) => res.json())
+  //     .then((res) => setRestaurantes(res))
+  // }, [])
+
+  if (!restaurantes) {
+    return <h4>Carregando...</h4>
+  }
 
   return (
     <>

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { cores } from '../../../styleGlobal'
+import { breakpoints, cores } from '../../../styleGlobal'
 import { Link } from 'react-router-dom'
 
 export const Card = styled.div`
@@ -8,6 +8,10 @@ export const Card = styled.div`
   height: 398px;
   border: 2px solid ${cores.rosa};
   position: relative;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 90%;
+  }
 `
 export const DivBotoesCard = styled.div`
   position: absolute;
@@ -32,6 +36,14 @@ export const CardImg = styled.img`
   position: absolute;
   top: -2px;
   left: -2px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    object-fit: cover;
+  }
 `
 export const TituloCard = styled.div`
   display: flex;
@@ -54,7 +66,7 @@ export const SaibaMais = styled(Link)`
   font-weight: bold;
   padding: 4px 6px;
   font-size: 16px;
-  margin-top: 20px;
+  margin-top: 4px;
   margin-left: 14px;
   border: none;
   color: ${cores.branca};
